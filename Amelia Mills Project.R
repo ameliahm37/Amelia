@@ -1,17 +1,15 @@
 #Factor Analysis - Amelia Mills Project
 
-install.packages('ggplot2')
-install.packages('GPArotation')
-
 #Calculating the correlation matrix for EFA, section 4.2
 x <- cor(divorce_data)
 
+install.packages('ggplot2')
+install.packages('psych')
 library(ggplot2)
+library(psych)
 
 #Visual representation of the correlation matrix, section 4.2
 heatmap(x, scale='none')
-
-library(psych)
 
 #Bartlett's Test of Sphericity, section 4.2
 cortest.bartlett(x, 54)
@@ -24,8 +22,6 @@ results <- prcomp(divorce_data, scale = TRUE)
 var_explained = results$sdev^2 / sum(results$sdev^2)
 print(var_explained)
 sum(var_explained[1:3])
-
-library(GPArotation)
 
 #PAF factor loadings with no rotation, section 4.5
 fa1.1 <- fa(r = x, nfactors = 3, rotate = 'none', fm = 'pa') 
